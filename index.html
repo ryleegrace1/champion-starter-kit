@@ -1,0 +1,548 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Champion Starter Kit | S&T GSD</title>
+  <style>
+    :root {
+      --green: #008060;
+      --green-light: #e6f5ef;
+      --green-dark: #004c3f;
+      --yellow: #ffd60a;
+      --yellow-light: #fff9e0;
+      --red: #d72c0d;
+      --red-light: #fef0ee;
+      --gray-50: #fafbfb;
+      --gray-100: #f1f2f3;
+      --gray-200: #e1e3e5;
+      --gray-500: #6d7175;
+      --gray-800: #1a1c1d;
+      --gray-900: #0d0d0d;
+      --font: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      --mono: 'SF Mono', 'Fira Code', monospace;
+      --max-w: 720px;
+    }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      font-family: var(--font);
+      color: var(--gray-900);
+      background: var(--gray-50);
+      line-height: 1.6;
+      font-size: 16px;
+    }
+    .hero {
+      background: var(--green-dark);
+      color: white;
+      padding: 3rem 1.5rem 2.5rem;
+      text-align: center;
+    }
+    .hero h1 {
+      font-size: 2rem;
+      font-weight: 700;
+      margin-bottom: 0.5rem;
+    }
+    .hero p {
+      font-size: 1.1rem;
+      opacity: 0.85;
+      max-width: 500px;
+      margin: 0 auto;
+    }
+    .hero .badge {
+      display: inline-block;
+      background: rgba(255,255,255,0.15);
+      border: 1px solid rgba(255,255,255,0.25);
+      border-radius: 20px;
+      padding: 0.25rem 0.75rem;
+      font-size: 0.8rem;
+      margin-bottom: 1rem;
+      letter-spacing: 0.03em;
+    }
+    .container { max-width: var(--max-w); margin: 0 auto; padding: 0 1.5rem; }
+    .toc {
+      background: white;
+      border: 1px solid var(--gray-200);
+      border-radius: 12px;
+      padding: 1.5rem;
+      margin: -1.5rem auto 2rem;
+      position: relative;
+      z-index: 1;
+      max-width: var(--max-w);
+    }
+    .toc h2 { font-size: 0.85rem; text-transform: uppercase; letter-spacing: 0.05em; color: var(--gray-500); margin-bottom: 0.75rem; }
+    .toc ol { padding-left: 1.25rem; }
+    .toc li { margin-bottom: 0.35rem; }
+    .toc a { color: var(--green); text-decoration: none; font-weight: 500; }
+    .toc a:hover { text-decoration: underline; }
+
+    section { margin-bottom: 2.5rem; }
+    h2 {
+      font-size: 1.4rem;
+      font-weight: 700;
+      margin-bottom: 1rem;
+      padding-top: 1rem;
+      border-top: 2px solid var(--gray-200);
+    }
+    h2 .num {
+      display: inline-block;
+      background: var(--green);
+      color: white;
+      width: 28px;
+      height: 28px;
+      border-radius: 50%;
+      text-align: center;
+      line-height: 28px;
+      font-size: 0.85rem;
+      margin-right: 0.5rem;
+      vertical-align: middle;
+    }
+    h3 { font-size: 1.05rem; margin: 1.25rem 0 0.5rem; color: var(--gray-800); }
+    p, li { margin-bottom: 0.5rem; }
+    ul, ol { padding-left: 1.5rem; }
+
+    .card {
+      background: white;
+      border: 1px solid var(--gray-200);
+      border-radius: 10px;
+      padding: 1.25rem;
+      margin-bottom: 1rem;
+    }
+    .card.green { border-left: 4px solid var(--green); background: var(--green-light); }
+    .card.yellow { border-left: 4px solid #b98900; background: var(--yellow-light); }
+    .card.red { border-left: 4px solid var(--red); background: var(--red-light); }
+
+    .card-title {
+      font-weight: 700;
+      font-size: 0.95rem;
+      margin-bottom: 0.5rem;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 1rem 0;
+      font-size: 0.9rem;
+    }
+    th, td {
+      padding: 0.6rem 0.75rem;
+      text-align: left;
+      border-bottom: 1px solid var(--gray-200);
+    }
+    th {
+      background: var(--gray-100);
+      font-weight: 600;
+      font-size: 0.8rem;
+      text-transform: uppercase;
+      letter-spacing: 0.03em;
+      color: var(--gray-500);
+    }
+    tr:hover td { background: var(--gray-50); }
+
+    .compare {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1rem;
+      margin: 1rem 0;
+    }
+    @media (max-width: 600px) { .compare { grid-template-columns: 1fr; } }
+
+    .tag {
+      display: inline-block;
+      padding: 0.15rem 0.5rem;
+      border-radius: 6px;
+      font-size: 0.75rem;
+      font-weight: 600;
+    }
+    .tag.green { background: var(--green-light); color: var(--green-dark); }
+    .tag.yellow { background: var(--yellow-light); color: #6b5300; }
+    .tag.red { background: var(--red-light); color: var(--red); }
+
+    .checklist { list-style: none; padding-left: 0; }
+    .checklist li {
+      padding: 0.5rem 0 0.5rem 2rem;
+      position: relative;
+      border-bottom: 1px solid var(--gray-100);
+    }
+    .checklist li::before {
+      content: "☐";
+      position: absolute;
+      left: 0.25rem;
+      font-size: 1.1rem;
+    }
+
+    .callout {
+      padding: 1rem 1.25rem;
+      border-radius: 8px;
+      margin: 1rem 0;
+      font-size: 0.95rem;
+    }
+    .callout.tip { background: var(--green-light); border: 1px solid #b3dfc9; }
+    .callout.warn { background: var(--yellow-light); border: 1px solid #e6c200; }
+    .callout.danger { background: var(--red-light); border: 1px solid #f5bfb8; }
+    .callout strong { display: block; margin-bottom: 0.25rem; }
+
+    .cmd {
+      font-family: var(--mono);
+      background: var(--gray-100);
+      padding: 0.15rem 0.4rem;
+      border-radius: 4px;
+      font-size: 0.85rem;
+    }
+
+    .footer {
+      text-align: center;
+      padding: 2rem 1.5rem;
+      color: var(--gray-500);
+      font-size: 0.85rem;
+      border-top: 1px solid var(--gray-200);
+      margin-top: 2rem;
+    }
+    .footer a { color: var(--green); }
+
+    .video-placeholder {
+      background: var(--gray-100);
+      border: 2px dashed var(--gray-200);
+      border-radius: 10px;
+      padding: 2rem;
+      text-align: center;
+      color: var(--gray-500);
+      margin: 1rem 0;
+    }
+    .video-placeholder .icon { font-size: 2rem; margin-bottom: 0.5rem; }
+  </style>
+</head>
+<body>
+
+<div class="hero">
+  <div class="badge">Shipping & Taxes</div>
+  <h1>Champion Starter Kit</h1>
+  <p>Everything you need to know to champion a GSD project. 5 minutes, not 50 slides.</p>
+</div>
+
+<div class="container">
+  <div class="toc">
+    <h2>On this page</h2>
+    <ol>
+      <li><a href="#your-job">Your job as champion (30-sec version)</a></li>
+      <li><a href="#unwritten-rules">The unwritten rules</a></li>
+      <li><a href="#weekly-rhythm">Your weekly rhythm</a></li>
+      <li><a href="#good-updates">Writing updates that don't suck</a></li>
+      <li><a href="#phases">Phase transitions cheat sheet</a></li>
+      <li><a href="#reviews">Reviews -- what to include</a></li>
+      <li><a href="#common-mistakes">Common mistakes</a></li>
+      <li><a href="#help">Where to get help</a></li>
+    </ol>
+  </div>
+
+  <!-- SECTION 1 -->
+  <section id="your-job">
+    <h2><span class="num">1</span> Your job as champion</h2>
+    <p>You're the DRI. Not the person who does everything -- the person who makes sure everything gets done and meets Shopify's quality bar. Here's the checklist:</p>
+    <ul class="checklist">
+      <li><strong>Own the outcomes.</strong> Being a champion is a big deal. You're accountable for whether this project delivers what it promised.</li>
+      <li><strong>Post weekly updates</strong> -- either manually or via the auto-updater in your project Slack channel. No update = your project gets ghosted, then auto-stopped.</li>
+      <li><strong>Keep dates accurate.</strong> Phase dates, release dates, end dates. Leadership uses these for investment decisions. Wrong dates = bad decisions.</li>
+      <li><strong>Resolve health checks ASAP.</strong> They run daily. Failed checks auto-downgrade your status to At Risk or Off Track. You'll get Slack pinged daily until you fix them.</li>
+      <li><strong>Communicate risks early.</strong> If your project is struggling, surface it -- don't smooth it over. Book a speed review if needed.</li>
+      <li><strong>Open high-quality reviews</strong> at the right time (see <a href="#reviews">Section 6</a>).</li>
+      <li><strong>Champion one project at a time.</strong> Focus is the feature.</li>
+    </ul>
+  </section>
+
+  <!-- SECTION 2 -->
+  <section id="unwritten-rules">
+    <h2><span class="num">2</span> The unwritten rules</h2>
+    <p>These won't be in any official docs. They'll save you pain.</p>
+
+    <div class="card green">
+      <div class="card-title">1. Align in your fecta before going to Vault</div>
+      <p>Your product lead / eng lead / data lead should not be surprised by what shows up in a Vault review. Have the conversation in Slack or on a call first, then come back with a clear, aligned position.</p>
+    </div>
+
+    <div class="card green">
+      <div class="card-title">2. Don't have long back-and-forths in reviews</div>
+      <p>If a reviewer requests changes and it turns into a thread -- take it to Slack or a call. Resolve the disagreement, then update the review with the final answer. Reviews are for decisions, not debates.</p>
+    </div>
+
+    <div class="card green">
+      <div class="card-title">3. Vault is a broadcast channel, not a filing cabinet</div>
+      <p>Most people use Vault reactively -- to satisfy a review. The teams that move fastest use it proactively to stay legible without extra meetings. Your project page should be understandable by someone with zero context.</p>
+    </div>
+
+    <div class="card green">
+      <div class="card-title">4. Rewrite your summary before every review</div>
+      <p>Forces clarity. Signals momentum. A stale summary from 3 months ago tells reviewers you're not paying attention.</p>
+    </div>
+
+    <div class="card green">
+      <div class="card-title">5. Stopping a project is a win, not a failure</div>
+      <p>It's the successful discovery that something didn't work. Leadership respects champions who stop early over champions who drag a dead project through release.</p>
+    </div>
+  </section>
+
+  <!-- SECTION 3 -->
+  <section id="weekly-rhythm">
+    <h2><span class="num">3</span> Your weekly rhythm</h2>
+    <p>The auto-updater does most of the work. Here's the flow:</p>
+
+    <table>
+      <tr><th>When</th><th>What happens</th><th>Your action</th></tr>
+      <tr>
+        <td><strong>Friday 9 AM</strong></td>
+        <td>Vault prompts you + contributors in the project Slack channel</td>
+        <td>Respond in the thread with what shipped, what's next, any blockers</td>
+      </tr>
+      <tr>
+        <td><strong>Friday 1 PM</strong></td>
+        <td>Cut-off for responses</td>
+        <td>End early: <span class="cmd">@Vault standup end</span></td>
+      </tr>
+      <tr>
+        <td><strong>Before publish</strong></td>
+        <td>Review the AI-generated summary</td>
+        <td>Preview: <span class="cmd">@Vault standup preview</span><br>Regenerate: <span class="cmd">@Vault standup regen</span><br>Publish: <span class="cmd">@Vault standup publish</span></td>
+      </tr>
+      <tr>
+        <td><strong>Sunday 9 AM</strong></td>
+        <td>Auto-posts if you haven't already</td>
+        <td>Nothing -- but don't rely on auto-post. Review it yourself.</td>
+      </tr>
+    </table>
+
+    <div class="callout tip">
+      <strong>Pro tip:</strong> Projects go stale after 7 days with no update. Even a one-liner is better than nothing. "Blocked on X, will unblock Monday" beats silence.
+    </div>
+  </section>
+
+  <!-- SECTION 4 -->
+  <section id="good-updates">
+    <h2><span class="num">4</span> Writing updates that don't suck</h2>
+    <p>Your updates are read by people with no context on your project. Write for them.</p>
+
+    <div class="compare">
+      <div class="card red">
+        <div class="card-title">❌ Don't write this</div>
+        <p>"We shipped MVP for Oasis, starting training on Monday."</p>
+        <p style="margin-top:0.75rem; font-size:0.85rem; color:var(--gray-500);">High-context. Only makes sense if you already know what Oasis is.</p>
+      </div>
+      <div class="card green">
+        <div class="card-title">✅ Write this</div>
+        <p>"This week, we launched the first version of our new 'Oasis' pipeline -- a system that automates search model training. Starting Monday, we'll test its ability to improve product search accuracy for merchants."</p>
+        <p style="margin-top:0.75rem; font-size:0.85rem; color:var(--gray-500);">Low-context. Anyone at Shopify can understand what this means.</p>
+      </div>
+    </div>
+
+    <div class="compare">
+      <div class="card red">
+        <div class="card-title">❌ Activity-focused</div>
+        <p>"We had three team meetings to discuss search relevance. The eng team refactored some code, and DS cleaned up training data."</p>
+      </div>
+      <div class="card green">
+        <div class="card-title">✅ Outcome-focused</div>
+        <p>"Improved search relevance by refactoring the ranking algorithm -- relevant product clicks up 12% in early testing. These changes move us closer to our Q3 goal of boosting store sales from search."</p>
+      </div>
+    </div>
+
+    <h3>The formula</h3>
+    <ol>
+      <li><strong>What shipped / what changed</strong> (outcome, not activity)</li>
+      <li><strong>What's next</strong> (so leadership knows the trajectory)</li>
+      <li><strong>Blockers / risks</strong> (be transparent -- use 🔴🟡🟢)</li>
+      <li><strong>Links to artifacts</strong> (show the work, even WIP)</li>
+    </ol>
+  </section>
+
+  <!-- SECTION 5 -->
+  <section id="phases">
+    <h2><span class="num">5</span> Phase transitions cheat sheet</h2>
+
+    <table>
+      <tr><th>Phase</th><th>Goal</th><th>Key rules</th></tr>
+      <tr>
+        <td><strong>Prototype</strong></td>
+        <td>Explore the idea, gain learnings quickly</td>
+        <td>
+          &lt; 6 weeks, max 2 engineers<br>
+          Use AI to rapidly prototype<br>
+          Code should be thrown away<br>
+          Answer: what are we trying to prove?
+        </td>
+      </tr>
+      <tr>
+        <td><strong>Build</strong></td>
+        <td>Build the right thing the right way</td>
+        <td>
+          Longest phase -- align with reviewers frequently<br>
+          Continuously ask: is this still the right solution?<br>
+          If not, stop the project
+        </td>
+      </tr>
+      <tr>
+        <td><strong>Release</strong></td>
+        <td>Ship boldly, rollout quickly</td>
+        <td>
+          EA → Limited Release → GA must happen in this phase<br>
+          Keep release dates updated<br>
+          Don't ship before you're in Release phase
+        </td>
+      </tr>
+      <tr>
+        <td><strong>Observe</strong> <span class="tag yellow">optional</span></td>
+        <td>Collect data on success</td>
+        <td>
+          No eng work (minor bugs OK)<br>
+          Health checks paused<br>
+          &lt; 6-8 weeks
+        </td>
+      </tr>
+      <tr>
+        <td><strong>Done</strong></td>
+        <td>Did we do what we said?</td>
+        <td>
+          Report results vs. success metrics<br>
+          Key learnings<br>
+          Recommend what's next
+        </td>
+      </tr>
+    </table>
+
+    <h3>When to open a review</h3>
+    <table>
+      <tr><th>Review type</th><th>When</th></tr>
+      <tr><td>Transition to Build</td><td>You've de-risked the biggest challenges and are ready for production code</td></tr>
+      <tr><td>Transition to Release</td><td>Project is launch-ready (all releases happen in Release phase)</td></tr>
+      <tr><td>Transition to Done</td><td>You can answer "yes" to "did we do what we said?"</td></tr>
+      <tr><td>Ad hoc</td><td>Significant direction change, or it's been a while since last review (alignment decays!)</td></tr>
+    </table>
+
+    <h3>Prototype checklist (before you move to Build)</h3>
+    <ul class="checklist">
+      <li>Technical confidence: architecture / integrations / perf risks validated</li>
+      <li>User validation: workflow tested, key edge cases identified</li>
+      <li>Scoping clarity: Build estimate grounded in prototype learnings</li>
+      <li>Go/No-Go is explicit: build with confidence, re-scope, or stop</li>
+    </ul>
+  </section>
+
+  <!-- SECTION 6 -->
+  <section id="reviews">
+    <h2><span class="num">6</span> Reviews -- what to include</h2>
+
+    <p>Reviews are feedback loops at critical moments. They serve three purposes:</p>
+    <ol>
+      <li><strong>Risk transfer</strong> -- you're transferring the risk of investing more resources to leadership</li>
+      <li><strong>Alignment</strong> -- forcing function to ensure we're building the right thing</li>
+      <li><strong>Feedback</strong> -- greater momentum and confidence in direction</li>
+    </ol>
+
+    <h3>Who reviews your project</h3>
+    <table>
+      <tr><th>Role</th><th>What they do</th></tr>
+      <tr><td><strong>OK1</strong> (max 3)</td><td>Leaders with context to judge quality and strategy. Added via team review plan.</td></tr>
+      <tr><td><strong>OK2</strong> (exactly 1)</td><td>The final say. Single point of accountability. Usually the aimer.</td></tr>
+      <tr><td><strong>OK Inform</strong></td><td>FYI only. Non-blocking, but can comment. If they request changes, they become OK1.</td></tr>
+      <tr><td><strong>Sophia</strong></td><td>AI reviewer. Provides constructive feedback. Not mandatory to address, but recommended before OK1/2s review.</td></tr>
+    </table>
+
+    <h3>Reviewer actions</h3>
+    <ul>
+      <li><strong>Approve</strong> -- project moves to next phase (if all agree)</li>
+      <li><strong>Pre-approve</strong> -- approved up to a future phase (skips intermediate reviews)</li>
+      <li><strong>Request changes</strong> -- you must address and mark complete to get back in their inbox</li>
+      <li><strong>Deny</strong> -- project cannot move forward. Review closes.</li>
+      <li><strong>Comment</strong> -- question or clarification needed</li>
+    </ul>
+
+    <div class="callout tip">
+      <strong>Pre-approvals are your friend.</strong> Some projects don't need a prototype phase. Some reviewers don't need to see every transition. Request pre-approval to skip unnecessary reviews and move faster.
+    </div>
+  </section>
+
+  <!-- SECTION 7 -->
+  <section id="common-mistakes">
+    <h2><span class="num">7</span> Common mistakes</h2>
+
+    <div class="card red">
+      <div class="card-title">🔴 Letting health checks pile up</div>
+      <p>Health checks run daily. Every failed check = a daily Slack ping and an auto-downgraded status. Resolve them the day they appear, not next week.</p>
+    </div>
+
+    <div class="card red">
+      <div class="card-title">🔴 Dates that haven't been updated in months</div>
+      <p>If your end date says "March 2026" and it's May, your project looks abandoned. Update dates when reality changes -- leadership uses these for planning.</p>
+    </div>
+
+    <div class="card red">
+      <div class="card-title">🔴 Shipping before Release phase</div>
+      <p>EA, Limited Release, and GA must all happen in Release phase. If you ship in Build, your reviews are meaningless and your releases aren't tracked.</p>
+    </div>
+
+    <div class="card red">
+      <div class="card-title">🔴 Proposals with broken links or gated docs</div>
+      <p>Every link in your proposal must be accessible to all Shopify employees. No "request access" screens. No 404s. Check them before you submit.</p>
+    </div>
+
+    <div class="card red">
+      <div class="card-title">🔴 Vague proposals</div>
+      <p>A proposal needs: clear title (Action + Object + Context), crisp TL;DR, explicit audience, definition of done, estimates, and early success metrics. Leave fields blank = instant "no."</p>
+    </div>
+
+    <div class="card yellow">
+      <div class="card-title">🟡 Using Vault as a filing cabinet</div>
+      <p>Your project page should tell a story. Tag contributors from other teams (their leads see your work too). Link to your mission. Post milestone updates. Make your work visible.</p>
+    </div>
+
+    <div class="card yellow">
+      <div class="card-title">🟡 Sitting on a struggling project quietly</div>
+      <p>If timeline slipped >7 days, or project is Off Track with real blockers, or a phase is taking way longer than expected -- book a speed review with SLT. Surface it early.</p>
+    </div>
+  </section>
+
+  <!-- SECTION 8 -->
+  <section id="help">
+    <h2><span class="num">8</span> Where to get help</h2>
+
+    <table>
+      <tr><th>Need</th><th>Go here</th></tr>
+      <tr><td>Vault bugs or "how do I..."</td><td><a href="https://shopify.enterprise.slack.com/archives/C02FMCY3C">#help-vault</a></td></tr>
+      <tr><td>S&T-specific GSD questions</td><td><a href="https://shopify.enterprise.slack.com/archives/C0888NXQS8L">#shipping-taxes-gsd</a></td></tr>
+      <tr><td>Product ops support</td><td>DM <strong>Rylee Grace</strong> or book office hours <!-- TODO: Add Calendly/booking link --></td></tr>
+      <tr><td>Vault changelog</td><td><a href="https://vault.shopify.io/teams/vault">Follow the Vault team page</a></td></tr>
+      <tr><td>Full GSD training deck</td><td><a href="https://docs.google.com/presentation/d/1o4q7_xLnj7ZiWTbLr6rXNawRPSfhDVW02c0AaDqaQzg">S&T GSD Training (Google Slides)</a></td></tr>
+    </table>
+
+    <!-- Video section - placeholder for recordings -->
+    <h3>Video walkthroughs</h3>
+    <div class="video-placeholder">
+      <div class="icon">🎬</div>
+      <p><strong>Coming soon</strong></p>
+      <p>Short video walkthroughs for common champion tasks.<br>Check back or ask in <a href="https://shopify.enterprise.slack.com/archives/C0888NXQS8L">#shipping-taxes-gsd</a>.</p>
+    </div>
+  </section>
+
+  <!-- QUICK REFERENCE -->
+  <section id="quick-ref">
+    <h2>Quick reference: Slack commands</h2>
+    <table>
+      <tr><th>Command</th><th>What it does</th></tr>
+      <tr><td><span class="cmd">@Vault standup preview</span></td><td>Preview auto-generated update</td></tr>
+      <tr><td><span class="cmd">@Vault standup regen</span></td><td>Regenerate the update</td></tr>
+      <tr><td><span class="cmd">@Vault standup publish</span></td><td>End standup and publish</td></tr>
+      <tr><td><span class="cmd">@Vault standup end</span></td><td>End standup early</td></tr>
+      <tr><td><span class="cmd">@Vault gsd add-resource</span></td><td>Add a resource link to project (in project channel)</td></tr>
+      <tr><td><span class="cmd">@Vault gsd add-contributor @name</span></td><td>Add a contributor to project</td></tr>
+    </table>
+  </section>
+
+</div>
+
+<div class="footer">
+  <p>Built by <a href="https://vault.shopify.io/users/27099-Rylee-Grace">Rylee Grace</a> · Product Operations, Shipping & Taxes<br>
+  Last updated: May 2026 · Questions? <a href="https://shopify.enterprise.slack.com/archives/C0888NXQS8L">#shipping-taxes-gsd</a></p>
+</div>
+
+</body>
+</html>
