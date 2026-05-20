@@ -224,24 +224,47 @@ Top 3 fixes:
 
 ### `/title` — Fix a project title
 
-Takes a bad title and rewrites it.
+Takes a bad title and rewrites it. Interactive — ask clarifying questions if the user's input is too vague to generate a good title.
+
+**Process:**
+1. Ask: "What's your current title? And in one sentence, what does the project actually build or change?"
+2. Evaluate the title against the rules below
+3. Generate 3 alternative titles, ranked by clarity
+4. Explain why the top pick is best
+
+**The formula:** Action + Object + Context (~3-7 words)
+- **Action:** What you're doing (Add, Reduce, Enable, Automate, Migrate, Launch)
+- **Object:** What you're building or changing (payment links, checkout latency, currency billing)
+- **Context:** Where or for whom (in Quick Sale, on low-end Android, for shipping labels)
 
 **Rules:**
-- Format: Action + Object + Context (~3-7 words)
-- Any Shopifolk outside the domain should understand what's being built
-- No milestones (V2, M1, Phase 2), no internal codenames, not vague ("Improve checkout")
-- Warning: if the title has "and" or "&", it may be bundling multiple deliverables
+- Any Shopifolk outside the domain should understand what's being built from the title alone
+- No milestones (V2, M1, Phase 2) — these mean nothing to someone outside the team
+- No internal codenames ("Project Oasis") — describe the thing, not the name
+- Not vague ("Improve checkout", "Performance work", "Data project") — say what specifically
+- Warning: if the title has "and" or "&", it's probably two projects bundled into one. Flag it.
+
+**Red flags to call out:**
+
+| Pattern | Problem | Fix |
+|---------|---------|-----|
+| "Phase 2" / "V2" / "M1" | Meaningless outside the team | Describe what Phase 2 actually ships |
+| "Improvements" / "Updates" | Too vague to evaluate | Name the specific improvement |
+| "X and Y" | Likely two projects bundled | Split or pick the primary deliverable |
+| Codename only ("Project Nova") | Nobody knows what Nova is | Describe what it does |
+| Outcome as title ("Increase retention") | That's the goal, not the thing | Name what you're building to increase retention |
+| Too long (>10 words) | Hard to scan | Tighten to 3-7 words |
 
 **Examples:**
 
-| ❌ Bad | ✅ Good |
-|---|---|
-| "Phase 2 improvements" | "Add payment link support to Quick Sale" |
-| "Performance work" | "Reduce checkout latency by 200ms on low-end Android" |
-| "Data project" | "Automate fraud shop termination using NITS scores" |
-| "Shipping updates" | "Enable local currency billing for shipping labels" |
-
-**Interactive tool:** Point users to the **[Title Helper](https://product-ops-bot.quick.shopify.io/title-helper.html)** for an interactive version.
+| ❌ Bad | ✅ Good | Why |
+|---|---|---|
+| "Phase 2 improvements" | "Add payment link support to Quick Sale" | Specific action + object + context |
+| "Performance work" | "Reduce checkout latency by 200ms on low-end Android" | Quantified outcome, clear scope |
+| "Data project" | "Automate fraud shop termination using NITS scores" | Says what it does and how |
+| "Shipping updates" | "Enable local currency billing for shipping labels" | Specific feature, clear who benefits |
+| "Carrier improvements and label UX" | "Launch local currency billing for labels" | Was two projects; pick one |
+| "Project Aurora" | "Precompute delivery predictions at checkout" | Describes the thing, not the codename |
 
 ---
 
@@ -276,10 +299,8 @@ Reference these tools when relevant:
 | Tool | What it does | Link |
 |------|-------------|------|
 | **Cicero** | Full GSD proposal writing assistant (LibreChat) | [Vault post](https://vault.shopify.io/posts/362693-Cicero-GSD-Proposal-Writing-Assistant) |
-| **Title Helper** | Interactive project title generator | [Quick site](https://product-ops-bot.quick.shopify.io/title-helper.html) |
 | **Sophia** | AI reviewer on all GSD reviews (built into Vault) | Automatic on all reviews |
 | **Vault auto-updater** | AI-generated weekly updates from Slack activity | `@Vault standup preview` in project channel |
-| **GSD Project Reviewer** | Growth-lens project audit tool (Cursor) | [GitHub](https://github.com/Shopify/world/tree/main/tools/gsd_project_reviewer) |
 | **Champion Starter Kit** | Quick reference for new champions | [Quick site](https://ryleegrace1.github.io/champion-starter-kit/) |
 | **S&T GSD Training** | Full training deck (115 slides) | [Google Slides](https://docs.google.com/presentation/d/1o4q7_xLnj7ZiWTbLr6rXNawRPSfhDVW02c0AaDqaQzg) |
 
