@@ -223,20 +223,30 @@
 </div>
 
 <div class="container">
+  <div class="callout tip" style="font-size:1rem; padding:1.5rem; margin-top:-1.5rem; margin-bottom:1.5rem; position:relative; z-index:2; border-radius:12px;">
+    <strong style="font-size:1.1rem;">The TLDR: Staying legible matters more than ever.</strong>
+    <p style="margin-top:0.5rem;">We should be using Vault proactively to show what's moving, what's blocked, and where support or tradeoffs are needed. Communicating the realities of your project -- what's going well <em>and</em> what's not -- is how we make better tradeoffs, unblock each other, and keep moving. The teams that do this well are the ones that ship well.</p>
+  </div>
+
   <div class="toc">
     <h2>On this page</h2>
     <ol>
-      <li><a href="#your-job">Your job as champion (30-sec version)</a></li>
-      <li><a href="#unwritten-rules">The unwritten rules</a></li>
-      <li><a href="#weekly-rhythm">Your weekly rhythm</a></li>
-      <li><a href="#good-updates">Writing updates that don't suck</a></li>
-      <li><a href="#phases">Phase transitions cheat sheet</a></li>
-      <li><a href="#reviews">Reviews -- what to include</a></li>
-      <li><a href="#common-mistakes">Common mistakes</a></li>
-      <li><a href="#help">Where to get help</a></li>
-      <li><a href="#ai-tools">AI tools for champions</a></li>
+      <strong style="font-size:0.75rem; text-transform:uppercase; letter-spacing:0.05em; color:var(--green-dark);">Principles</strong>
+      <li value="1"><a href="#your-job">Your job as champion (30-sec version)</a></li>
+      <li value="2"><a href="#unwritten-rules">The unwritten rules</a></li>
+      <strong style="display:block; font-size:0.75rem; text-transform:uppercase; letter-spacing:0.05em; color:var(--gray-800); margin-top:0.75rem; margin-bottom:0.5rem;">Playbook</strong>
+      <li value="3"><a href="#weekly-rhythm">Your weekly rhythm</a></li>
+      <li value="4"><a href="#good-updates">Writing updates that don't suck</a></li>
+      <li value="5"><a href="#phases">Phase transitions cheat sheet</a></li>
+      <li value="6"><a href="#reviews">Reviews -- what to include</a></li>
+      <li value="7"><a href="#common-mistakes">Common mistakes</a></li>
+      <li value="8"><a href="#help">Where to get help</a></li>
+      <li value="9"><a href="#ai-tools">AI tools for champions</a></li>
     </ol>
   </div>
+
+  <!-- PRINCIPLES DIVIDER -->
+  <div style="margin: 2rem 0 1.5rem; padding: 0.5rem 1rem; background: var(--green-dark); color: white; border-radius: 8px; font-size: 0.8rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em; text-align: center;">Principles</div>
 
   <!-- SECTION 1 -->
   <section id="your-job">
@@ -244,10 +254,11 @@
     <p>You're the DRI. Not the person who does everything -- the person who makes sure everything gets done and meets Shopify's quality bar. Here's the checklist:</p>
     <ul class="checklist">
       <li><strong>Own the outcomes.</strong> Being a champion is a big deal. You're accountable for whether this project delivers what it promised.</li>
-      <li><strong>Post weekly updates</strong> -- either manually or via the auto-updater in your project Slack channel. No update = your project gets ghosted, then auto-stopped.</li>
-      <li><strong>Keep dates accurate.</strong> Phase dates, release dates, end dates. Leadership uses these for investment decisions. Wrong dates = bad decisions.</li>
+      <li><strong>Post weekly updates</strong> -- either manually or via the auto-updater in your project Slack channel. Projects go stale after 7 days. Even a one-liner beats silence.</li>
+      <li><strong>Keep timelines & key dates accurate.</strong> GA date, phase transitions, end date. Leadership uses these for investment decisions. Wrong dates = bad decisions.</li>
+      <li><strong>Own your status.</strong> The hygiene bot will flag projects automatically, but status is yours to own. If there's a real risk, keep it At Risk. Don't flip back to On Track until the risk is actually resolved.</li>
       <li><strong>Resolve health checks ASAP.</strong> They run daily. Failed checks auto-downgrade your status to At Risk or Off Track. You'll get Slack pinged daily until you fix them.</li>
-      <li><strong>Communicate risks early.</strong> If your project is struggling, surface it -- don't smooth it over. Book a speed review if needed.</li>
+      <li><strong>Surface blockers fast.</strong> When you need support, bring it forward -- either in Slack or by booking a speed review. GSD should surface problems early, not smooth them over. Need a speed review? <a href="https://shopify.enterprise.slack.com/archives/D0949RVDJFR" style="color:var(--green); font-weight:600;">DM Leah</a> to get one scheduled.</li>
       <li><strong>Open high-quality reviews</strong> at the right time (see <a href="#reviews">Section 6</a>).</li>
       <li><strong>Champion one project at a time.</strong> Focus is the feature.</li>
     </ul>
@@ -260,7 +271,7 @@
 
     <div class="card green">
       <div class="card-title">1. Align in your fecta before going to Vault</div>
-      <p>Your product lead / eng lead / data lead should not be surprised by what shows up in a Vault review. Have the conversation in Slack or on a call first, then come back with a clear, aligned position.</p>
+      <p>Your product lead / eng lead / data lead should not be surprised by what shows up in a Vault review. Before requesting a phase transition, stopping, or pausing a project, your project team should be aligned and your fecta consulted. Changes in direction should not come as a surprise -- think of this as another way we default to open.</p>
     </div>
 
     <div class="card green">
@@ -283,6 +294,9 @@
       <p>It's the successful discovery that something didn't work. Leadership respects champions who stop early over champions who drag a dead project through release.</p>
     </div>
   </section>
+
+  <!-- PLAYBOOK DIVIDER -->
+  <div style="margin: 2rem 0 1.5rem; padding: 0.5rem 1rem; background: var(--gray-800); color: white; border-radius: 8px; font-size: 0.8rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em; text-align: center;">Playbook</div>
 
   <!-- SECTION 3 -->
   <section id="weekly-rhythm">
