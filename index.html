@@ -531,16 +531,48 @@
 
     <div class="card green">
       <div class="card-title">🤖 GSD Champion Skill (for Claude, Cursor, River, Mana)</div>
-      <p>A portable AI skill you drop into any agent. Gives you 5 commands:</p>
-      <ul>
-        <li><span class="cmd">/update</span> — Turn rough notes into an outcome-oriented weekly update</li>
-        <li><span class="cmd">/proposal</span> — Draft or evaluate a GSD proposal against reviewer rubrics</li>
-        <li><span class="cmd">/review-prep</span> — Generate phase transition review content</li>
-        <li><span class="cmd">/evaluate</span> — Audit your project's Vault page (title, dates, storytelling)</li>
-        <li><span class="cmd">/title</span> — Fix a bad project title</li>
-      </ul>
-      <p style="margin-top:0.75rem;"><strong><a href="https://github.com/ryleegrace1/champion-starter-kit/blob/main/gsd-champion-skill.md">→ Get the skill (GitHub)</a></strong> · Install: copy to <span class="cmd">~/.claude/skills/</span> or <span class="cmd">~/.cursor/rules/</span></p>
+      <p>A portable AI skill you drop into any agent. It pulls context from Vault, Slack, and GitHub, generates a first draft, and asks you to validate -- so you're reacting to something, not starting from a blank page.</p>
+      <p style="margin-top:0.75rem;"><strong>Install:</strong> Download the file and copy it to your agent's skills folder:</p>
+      <pre style="background:var(--gray-100);padding:0.75rem 1rem;border-radius:6px;font-size:0.85rem;overflow-x:auto;margin:0.5rem 0;"><code># Claude Code
+cp gsd-champion-skill.md ~/.claude/skills/
+
+# Cursor
+cp gsd-champion-skill.md ~/.cursor/rules/
+
+# Mana (Obsidian)
+cp gsd-champion-skill.md mana/skills/</code></pre>
+      <p style="margin-top:0.75rem;"><strong><a href="https://github.com/ryleegrace1/champion-starter-kit/blob/main/gsd-champion-skill.md">→ Download the skill from GitHub</a></strong></p>
     </div>
+
+    <h3>Commands</h3>
+    <table>
+      <tr><th>Command</th><th>What it does</th><th>How it works</th></tr>
+      <tr>
+        <td><span class="cmd">/update</span></td>
+        <td>Write your weekly update</td>
+        <td>Reads your Vault project, Slack channel, and GitHub PRs from the last 7 days. Drafts an outcome-oriented update. You review and fix anything it got wrong.</td>
+      </tr>
+      <tr>
+        <td><span class="cmd">/proposal</span></td>
+        <td>Draft or evaluate a proposal</td>
+        <td>Pulls existing context (draft proposals, prior art), asks only what's missing, then generates a full proposal with character counts. Validates against the rubric from <a href="https://vault.shopify.io/posts/343065-What-Makes-a-Great-GSD-Proposal">What Makes a Great GSD Proposal</a>.</td>
+      </tr>
+      <tr>
+        <td><span class="cmd">/review-prep</span></td>
+        <td>Prepare a phase transition review</td>
+        <td>Reads your project's current phase and recent activity. Generates phase-specific review content (Prototype→Build, Build→Release, etc.) with the right checklists and questions.</td>
+      </tr>
+      <tr>
+        <td><span class="cmd">/evaluate</span></td>
+        <td>Audit your project page</td>
+        <td>Reads your full Vault project page and scores it on title clarity, storytelling, hygiene, and visibility. Outputs a scorecard with the top 3 fixes -- and can draft corrected text you paste into Vault.</td>
+      </tr>
+      <tr>
+        <td><span class="cmd">/title</span></td>
+        <td>Fix a bad project title</td>
+        <td>Give it your current title, get 3 ranked alternatives following the Action + Object + Context formula. Flags common problems: codenames, "Phase 2", bundled scope.</td>
+      </tr>
+    </table>
 
     <div class="card green">
       <div class="card-title">📝 Cicero — Proposal Writing Assistant</div>
