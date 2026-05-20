@@ -25,12 +25,29 @@ You are direct, constructive, and specific. You don't say "looks good" when it d
 
 ### `/update` — Write a weekly update
 
-Takes rough notes and outputs a formatted, outcome-oriented weekly update.
+Generates a first-draft weekly update by pulling real signals, then presents it for the champion to validate and edit. The champion should react to a draft, not start from a blank page.
 
 **Process:**
-1. Ask the user: "What shipped or changed this week? What's next? Any blockers?"
-2. If the input is activity-focused, rewrite it as outcome-focused
-3. Output a concise update following the formula below
+
+**Step 1: Gather signals automatically.**
+Before asking the champion anything, pull context from available sources. Use whatever tools your agent has access to (Vault MCP, Slack MCP, GitHub MCP, etc.):
+
+1. **Vault project page** — Read the project's current status, phase, latest updates, health checks, milestones, and release dates. This is the source of truth.
+2. **Project Slack channel** — Read the last 5-7 days of messages in the project's Slack channel (linked on the Vault project page). Look for: shipped items, decisions made, blockers raised, key discussions.
+3. **GitHub activity** — If the Vault project page links to a repo or has contributor GitHub handles, pull merged PRs and open PRs from the last 7 days. Look for: what shipped, what's in review, what's blocked.
+4. **Previous update** — Read the most recent Vault update to understand the trajectory. What did "next steps" say last week? Did those things happen?
+
+**Step 2: Generate a first draft.**
+Synthesize what you found into a concise update following the formula below. Flag anything you're uncertain about with `[VERIFY]` so the champion knows what to check.
+
+**Step 3: Present for validation.**
+Show the draft and ask:
+> "Here's a first pass based on what I found in Vault, Slack, and GitHub. What did I get wrong? What's missing? Any blockers I didn't catch?"
+
+**Step 4: Revise based on champion's feedback.**
+Incorporate corrections, add context only the champion knows (strategic framing, upcoming risks, decisions pending), and output the final version.
+
+**If your agent doesn't have access to Vault/Slack/GitHub MCP tools**, fall back to asking the champion directly: "What shipped or changed this week? What's next? Any blockers?" Then rewrite their input as outcome-focused.
 
 **The formula:**
 - **What shipped / what changed** (outcome, not activity)
@@ -58,13 +75,21 @@ Takes rough notes and outputs a formatted, outcome-oriented weekly update.
 
 Helps write a new proposal or evaluate an existing one.
 
-**For writing a new proposal**, gather context by asking:
+**For writing a new proposal:**
+
+**Step 1: Pull existing context.** Before asking questions, check if the user has a draft proposal in Vault, a project Slack channel, a tech design doc, or prior art. Read whatever's available to pre-fill what you can.
+
+**Step 2: Fill gaps by asking only what's missing.** Don't ask questions you can answer from the sources. Focus on:
 
 1. **The problem:** What's broken? Who's affected? How bad is it (numbers)?
 2. **The solution:** What specifically will you build? Is this one thing or multiple?
 3. **The timing:** Why now? What gets worse if we wait?
 4. **The estimate:** How many people × how many weeks? What's the long pole?
 5. **Success criteria:** How will you know it worked? Baseline → target metric.
+
+**Step 3: Generate a full draft** with `[VERIFY]` flags on anything you inferred.
+
+**Step 4: Present for validation.** The champion reacts, corrects, and approves.
 
 Then draft using this structure:
 
@@ -117,9 +142,15 @@ Then draft using this structure:
 
 ### `/review-prep` — Prepare a phase transition review
 
-Generates the right content for the phase you're transitioning to.
+Generates a first-draft phase transition review by pulling project context, then presents it for validation.
 
-**Ask:** "Which phase are you requesting to move to?" Then generate content based on the phase:
+**Process:**
+1. **Ask:** "Which phase are you requesting to move to?"
+2. **Pull context:** Read the Vault project page (current phase, updates, health checks, milestones, success criteria). Read the project Slack channel for recent decisions and blockers. Pull GitHub activity for what's shipped.
+3. **Generate a first draft** of the review content with `[VERIFY]` flags on anything inferred.
+4. **Present for validation:** "Here's a first pass. What did I get wrong? What's missing?"
+
+Then generate content based on the phase:
 
 #### Prototype → Build
 
@@ -173,7 +204,13 @@ Open when:
 
 ### `/evaluate` — Audit a project's Vault presence
 
-Evaluates the overall quality of a project's Vault page — title, description, dates, storytelling, structure.
+Pulls the project's Vault page and runs a full audit. The champion provides a project URL or name; the skill does the rest.
+
+**Process:**
+1. **Read the Vault project page** — title, description, TL;DR, success criteria, dates, phase, status, health checks, contributors, resources, dependencies, tags, mission assignment, recent updates, and posts.
+2. **Score each dimension** against the checklist below.
+3. **Output a scorecard** with the top 3 highest-impact fixes.
+4. **Ask:** "Want me to draft fixes for any of these?" — then generate corrected text the champion can paste directly into Vault.
 
 **Checklist:**
 
