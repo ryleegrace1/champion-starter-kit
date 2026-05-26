@@ -546,16 +546,10 @@
     <div class="card green">
       <div class="card-title">🤖 GSD Champion Skill (for Claude, Cursor, River, Mana)</div>
       <p>A portable AI skill you drop into any agent. It pulls context from Vault, Slack, and GitHub, generates a first draft, and asks you to validate -- so you're reacting to something, not starting from a blank page.</p>
-      <p style="margin-top:0.75rem;"><strong>Install:</strong> Download the file and copy it to your agent's skills folder:</p>
-      <pre style="background:var(--gray-100);padding:0.75rem 1rem;border-radius:6px;font-size:0.85rem;overflow-x:auto;margin:0.5rem 0;"><code># Claude Code
-cp gsd-champion-skill.md ~/.claude/skills/
-
-# Cursor
-cp gsd-champion-skill.md ~/.cursor/rules/
-
-# Mana (Obsidian)
-cp gsd-champion-skill.md mana/skills/</code></pre>
-      <p style="margin-top:0.75rem;"><strong><a href="https://github.com/ryleegrace1/champion-starter-kit/blob/main/gsd-champion-skill.md">→ Download the skill from GitHub</a></strong></p>
+      <p style="margin-top:0.75rem;"><strong>Install:</strong> Run this in your terminal:</p>
+      <pre style="background:var(--gray-100);padding:0.75rem 1rem;border-radius:6px;font-size:0.85rem;overflow-x:auto;margin:0.5rem 0;"><code>devx skills get gsd-champion --global</code></pre>
+      <p style="margin-top:0.5rem; font-size:0.9rem; color:var(--gray-500);">Works with Claude Code, Cursor, Codex, OpenCode, and Pi.</p>
+      <p style="margin-top:0.75rem;"><strong><a href="https://skills.quick.shopify.io/#/skills/gsd-champion">→ View on the Skills Registry</a></strong></p>
     </div>
 
     <h3>Commands</h3>
@@ -575,6 +569,11 @@ cp gsd-champion-skill.md mana/skills/</code></pre>
         <td><span class="cmd">/review-prep</span></td>
         <td>Prepare a phase transition review</td>
         <td>Reads your project's current phase and recent activity. Generates phase-specific review content (Prototype→Build, Build→Release, etc.) with the right checklists and questions.</td>
+      </tr>
+      <tr>
+        <td><span class="cmd">/review</span></td>
+        <td>Self-review before submitting</td>
+        <td>Runs your proposal or review through two lenses: a structured senior reviewer pass (Missing Elements → Critical Issues → Suggestions) and a Sophia advisory crew pass (8 named advisors). Scans for clarity anti-patterns and offers to rewrite addressing all feedback.</td>
       </tr>
       <tr>
         <td><span class="cmd">/evaluate</span></td>
